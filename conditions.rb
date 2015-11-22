@@ -38,3 +38,11 @@ emails = [
     puts "Okay !"
   end
  
+ 
+ // Bool
+ 
+ a = 15
+ mon_booleen = (a > 10)
+if mon_booleen
+  puts a
+end
