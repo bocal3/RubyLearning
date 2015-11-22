@@ -8,7 +8,7 @@ else
 end
  
 
-// et les tableaux ?
+# et les tableaux ?
 
 emails = [
   "bob@bob.com",
@@ -31,7 +31,7 @@ emails = [
   end
   
   
-  // Combinaison
+  # Combinaison
   
   a = 12
   if a != 12 && a != 10 || a == 11
@@ -39,7 +39,7 @@ emails = [
   end
  
  
- // Bool
+ # Bool
  
  a = 15
  mon_booleen = (a > 10)
