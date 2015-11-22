@@ -4,14 +4,31 @@ class Animal
   def initialize(nom)
     @nom = nom
   end
+end
+# Chien, Oiseau et Chat hérite d'Aminal
+class Chien < Animal
   
   def parler
-    puts "Je suis un animal qui s'appelle #{nom}"
+    puts "#{nom}: Ouaf!"
   end
 end
 
-mon_chien = Animal.new("Bob le chien")
-mon_chat = Animal.new("Adeline le chat")
+class Oiseau < Animal
+  
+  def parler
+    puts "#{nom}: Cuicui!"
+  end
+end
+
+class Chat < Animal
+  
+  def parler
+    puts "#{nom}: Miaou!"
+  end
+end
+
+mon_chien = Chien.new("Bob le chien")
+mon_chat = Chat.new("Adeline le chat")
 
 mon_chat.parler
 mon_chien.parler
