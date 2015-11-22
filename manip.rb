@@ -1,6 +1,10 @@
 class Utilisateur
   attr_accessor :prenom, :ami
   
+  def initialize(prenom)
+    @prenom = prenom
+  end
+  
   def est_ami_avec?(prenom)
     amis.each do |ami|
       if ami.prenom == prenom
@@ -11,14 +15,11 @@ class Utilisateur
   end
 end
 
-alice = Utilisateur.new
-alice.prenom = "Alice"
+alice = Utilisateur.new("Alice")
 
-bob = Utilisateur.new
-bob.prenom = "Bob"
+bob = Utilisateur.new("Bob")
 
-jane = Utilisateur.new
-jane.prenom = "Jane"
+jane = Utilisateur.new("Jane")
 
 alice.amis = [bob, jane]
 
