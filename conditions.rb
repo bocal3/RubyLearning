@@ -30,4 +30,11 @@ emails = [
     puts email
   end
   
+  
+  // Combinaison
+  
+  a = 12
+  if a != 12 && a != 10 || a == 11
+    puts "Okay !"
+  end
  
