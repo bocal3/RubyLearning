@@ -1,3 +1,4 @@
+// Les boucles
 utilisateurs = [
   "Alice", "Bob", "John", "Hector"
   ]
@@ -8,3 +9,10 @@ utilisateurs = [
     puts i = i + 1
     puts utilisateur
   end
+
+// Les boucles de répétition
+10.times do |i|
+  // fait 10 fois
+  puts "Hello #{i}"
+  // #{i} placer l'indice en plus
+end
