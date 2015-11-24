@@ -16,3 +16,11 @@ utilisateurs = [
   puts "Hello #{i}"
   # #{i} placer l'indice en plus
 end
+
+
+n = 0
+while n < 10 #tant que n est inférieur à 10 exécuter le code
+    print n * 8 #ici la table de 8
+    n = n + 1 #rajouter 1 à n pour que la boucle ne tourne pas en rond et atteigne 10
+    print " "
+end
