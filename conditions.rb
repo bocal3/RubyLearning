@@ -46,3 +46,22 @@ emails = [
 if mon_booleen
   puts a
 end
+
+# case
+
+note = 18 #Modifiez la note ici et voyez le résultat
+
+case note
+    when 0..6
+        print "Vous n'avez pas réussi l'examen"
+    when 6..12
+        print "Vous avez réussi l'examen"
+    when 12..14
+        print "Vous avez réussi l'examen avec mention assez bien"
+    when 14..16
+        print "Vous avez réussi l'examen avec mention bien"
+    when 16..20
+        print "Vous avez réussi l'examen avec mention très bien"
+    else
+        print "La note entrée est incorrecte"
+end
