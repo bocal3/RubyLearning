@@ -34,3 +34,8 @@ begin
     n = n + 1
     print " "
 end while n < 10
+
+
+for n in 0..5
+    print n #instruction(s)
+end
