@@ -1,10 +1,13 @@
 class Personne
-  attr_accessor :nom, :points_de_vie, :en_vie
+  attr_accessor :nom, :points_de_vie, :en_vie, :degat_bas, :degat_haut
 
   def initialize(nom)
     @nom = nom
     @points_de_vie = 100
     @en_vie = true
+    @degat_bas = 10
+    @degat_haut = 30
+    # les valeur 10 et 30 sont prise au hasard
   end
 
   def info
@@ -22,7 +25,11 @@ class Personne
   def attaque(personne)
     # A faire:
     # - Fait subir des dégats à la personne passée en paramètre
+    point_de_vie_depart = point_de_vie
+    point_de_vie -= rand(degat_bas..degat_haut)
     # - Affiche ce qu'il s'est passé
+    point_de_vie_perdu = point_de_vie_depart - point_de_vie
+    puts "Il a perdu #{point_de_vie_perdu} point de vie"
   end
 
   def subit_attaque(degats_recus)
