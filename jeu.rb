@@ -33,8 +33,13 @@ class Personne
   def subit_attaque(degats_recus)
     # A faire:
     # - Réduit les points de vie en fonction des dégats reçus
+	points_de_vie -= degats_recus
     # - Affiche ce qu'il s'est passé
+	puts nom + " subit #{degats_recus}hp de dégats !"
     # - Détermine si la personne est toujours en_vie ou non
+	if points_de_vie <= 0
+            en_vie = false
+			end
   end
 end
 
