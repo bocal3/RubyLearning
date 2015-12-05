@@ -104,6 +104,17 @@ class Jeu
   def self.est_fini(joueur, monde)
     # A faire:
     # - Déterminer la condition de fin du jeu
+	i = 0
+        monde.ennemis.each do |ennemi|
+			if ennemi.en_vie == TRUE
+				return false
+			end
+		end
+        if joueur.en_vie == false
+            return true
+        else
+            return false
+        end
   end
 end
 
