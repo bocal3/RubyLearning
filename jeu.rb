@@ -22,14 +22,12 @@ class Personne
     end
   end
 
-  def attaque(personne)
+ def attaque(personne)
     # A faire:
     # - Fait subir des dégats à la personne passée en paramètre
-    point_de_vie_depart = point_de_vie
     point_de_vie -= rand(degat_bas..degat_haut)
     # - Affiche ce qu'il s'est passé
-    point_de_vie_perdu = point_de_vie_depart - point_de_vie
-    puts "Il a perdu #{point_de_vie_perdu} point de vie"
+    puts nom + " attaque " + personne.nom
   end
 
   def subit_attaque(degats_recus)
