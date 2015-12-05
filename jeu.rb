@@ -15,6 +15,7 @@ class Personne
     # - Renvoie le nom et "vaincu" si la personne a été vaincue
     if point_de_vie < 0
       puts "#{nom} vaincu"
+      en_vie = false
     end
   end
 
