@@ -116,7 +116,8 @@ class Monde
 	toujours_en_vie = ""
 	ennemis.each do |ennemi|
 		if(ennemi.en_vie)
-		toujours_en_vie += "#{ennemi} "
+			toujours_en_vie += "#{ennemi} "
+		end
 	end
 	puts("Le monde contient #{toujours_en_vie}")
   end
