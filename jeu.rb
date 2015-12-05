@@ -8,9 +8,14 @@ class Personne
   end
 
   def info
+    # Cette méthode donne les info correspondant au joueur
     # A faire:
     # - Renvoie le nom et les points de vie si la personne est en vie
+    puts "#{nom} #{point_de_vie}"
     # - Renvoie le nom et "vaincu" si la personne a été vaincue
+    if point_de_vie < 0
+      puts "#{nom} vaincu"
+    end
   end
 
   def attaque(personne)
