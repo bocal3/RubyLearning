@@ -63,13 +63,17 @@ class Joueur < Personne
   def soin
     # A faire:
     # - Gagner de la vie
+	points_de_vie += 25
     # - Affiche ce qu'il s'est passé
+	puts nom + " regagne de la vie"
   end
 
   def ameliorer_degats
     # A faire:
     # - Augmenter les dégats bonus
+	degats_bonus += 30
     # - Affiche ce qu'il s'est passé
+	puts nom + " gagne en puissance !"
   end
 end
 
