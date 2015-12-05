@@ -113,6 +113,12 @@ class Monde
   def ennemis_en_vie
     # A faire:
     # - Ne retourner que les ennemis en vie
+	toujours_en_vie = ""
+	ennemis.each do |ennemi|
+		if(ennemi.en_vie)
+		toujours_en_vie += "#{ennemi} "
+	end
+	puts("Le monde contient #{toujours_en_vie}")
   end
 end
 
