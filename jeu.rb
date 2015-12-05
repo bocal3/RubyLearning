@@ -1,45 +1,49 @@
 class Personne
-  attr_accessor :nom, :points_de_vie, :en_vie, :degat_bas, :degat_haut
+  attr_accessor :nom, :points_de_vie, :en_vie
+
+  @@MAX_VIE = 100
 
   def initialize(nom)
     @nom = nom
-    @points_de_vie = 100
+    @points_de_vie = @@MAX_VIE
     @en_vie = true
-    @degat_bas = 10
-    @degat_haut = 30
-    # les valeur 10 et 30 sont prise au hasard
   end
 
   def info
-    # Cette méthode donne les info correspondant au joueur
     # A faire:
     # - Renvoie le nom et les points de vie si la personne est en vie
-    puts "#{nom} #{point_de_vie}"
     # - Renvoie le nom et "vaincu" si la personne a été vaincue
-    if point_de_vie < 0
-      puts "#{nom} vaincu"
-      en_vie = false
-    end
+    ####### - OK
+
+    if @en_vie
+      "#{nom} (#{points_de_vie} / #{@@MAX_VIE} pv)"
+    else
+      "#{nom} (vaincu)"
+    end    
   end
 
- def attaque(personne)
+  def attaque(personne)
     # A faire:
     # - Fait subir des dégats à la personne passée en paramètre
-    point_de_vie -= rand(degat_bas..degat_haut)
     # - Affiche ce qu'il s'est passé
-    puts nom + " attaque " + personne.nom
+    ###### - OK
+
+    puts "#{@nom} attaque #{personne.nom}"    
+    personne.subit_attaque(self.degats)
+
   end
 
   def subit_attaque(degats_recus)
     # A faire:
     # - Réduit les points de vie en fonction des dégats reçus
-	points_de_vie -= degats_recus
     # - Affiche ce qu'il s'est passé
-	puts nom + " subit #{degats_recus}hp de dégats !"
     # - Détermine si la personne est toujours en_vie ou non
-	if points_de_vie <= 0
-            en_vie = false
-			end
+    ####### - OK
+
+    @points_de_vie -= degats_recus
+    puts "#{@nom} subit #{degats_recus}hp de dégats"
+    @en_vie = false if @points_de_vie < 0
+
   end
 end
 
@@ -58,22 +62,41 @@ class Joueur < Personne
     # A faire:
     # - Calculer les dégats
     # - Affiche ce qu'il s'est passé
+    ##### - OK
+
+    puts "#{@nom} profite de #{@degats_bonus} points de dégats bonus"
+    return rand(5..40) + @degats_bonus
+
   end
 
   def soin
     # A faire:
     # - Gagner de la vie
-	points_de_vie += 25
     # - Affiche ce qu'il s'est passé
-	puts nom + " regagne de la vie"
+    ###### - OK
+    
+    gain_soin = rand(25..50)
+    
+    if @points_de_vie + gain_soin > @@MAX_VIE
+    	@points_de_vie = @@MAX_VIE
+    else
+    	@points_de_vie += gain_soin
+    end
+
+    puts "#{@nom} regagne de la vie" 
+
+
   end
 
   def ameliorer_degats
     # A faire:
     # - Augmenter les dégats bonus
-	degats_bonus += 30
     # - Affiche ce qu'il s'est passé
-	puts nom + " gagne en puissance !"
+    ###### - OK
+
+    @degats_bonus += rand(5..10)
+    puts "#{nom} gagne #{@degats_bonus}hp en puissance"
+
   end
 end
 
@@ -81,6 +104,9 @@ class Ennemi < Personne
   def degats
     # A faire:
     # - Calculer les dégats
+
+    return rand(10) + 1
+
   end
 end
 
@@ -104,17 +130,10 @@ class Jeu
   def self.est_fini(joueur, monde)
     # A faire:
     # - Déterminer la condition de fin du jeu
-	i = 0
-        monde.ennemis.each do |ennemi|
-			if ennemi.en_vie == TRUE
-				return false
-			end
-		end
-        if joueur.en_vie == false
-            return true
-        else
-            return false
-        end
+    ####### - OK
+
+    return true if joueur.en_vie == false || monde.ennemis_en_vie.length == 0 
+
   end
 end
 
@@ -124,13 +143,15 @@ class Monde
   def ennemis_en_vie
     # A faire:
     # - Ne retourner que les ennemis en vie
-	toujours_en_vie = ""
-	ennemis.each do |ennemi|
-		if(ennemi.en_vie)
-			toujours_en_vie += "#{ennemi} "
-		end
-	end
-	puts("Le monde contient #{toujours_en_vie}")
+    ###### - OK
+
+    ennemis_en_vie = []
+    @ennemis.each do |ennemi|
+      ennemis_en_vie << ennemi if ennemi.points_de_vie > 0
+    end
+
+    return ennemis_en_vie
+
   end
 end
 
@@ -164,6 +185,7 @@ puts "\n\nAinsi débutent les aventures de #{joueur.nom}\n\n"
   choix = gets.chomp.to_i
 
   # En fonction du choix on appelle différentes méthodes sur le joueur
+
   if choix == 0
     joueur.soin
   elsif choix == 1
@@ -177,7 +199,11 @@ puts "\n\nAinsi débutent les aventures de #{joueur.nom}\n\n"
     # car les choix 0 et 1 étaient réservés pour le soin et
     # l'amélioration d'attaque
     ennemi_a_attaquer = monde.ennemis[choix - 2]
-    joueur.attaque(ennemi_a_attaquer)
+    if ennemi_a_attaquer.en_vie
+	    joueur.attaque(ennemi_a_attaquer) 
+	else
+		puts "#{ennemi_a_attaquer.nom} est déjà vaincu !"
+	end
   end
 
   puts "\nLES ENNEMIS RIPOSTENT !"
@@ -190,6 +216,7 @@ puts "\n\nAinsi débutent les aventures de #{joueur.nom}\n\n"
   puts "\nEtat du héro: #{joueur.info}\n"
 
   # Si le jeu est fini, on interompt la boucle
+  Jeu.est_fini(joueur, monde)
   break if Jeu.est_fini(joueur, monde)
 end
 
@@ -199,10 +226,11 @@ puts "\nGame Over!\n"
 # - Afficher le résultat de la partie
 
 if joueur.en_vie
-  puts "Vous avez gagné !"
+	puts "Vous avez gagné !"
 else
-  puts "Vous avez perdu !"
+	puts "Vous avez perdu !"
 end
+
 
 
 
